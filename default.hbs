@@ -49,6 +49,8 @@
     <style>
         .gh-content {
             position: relative;
+            border: none;
+            box-shadow: none;
         }
 
         .gh-toc > .toc-list {
@@ -62,17 +64,22 @@
             list-style: none;
         }
 
+        {{!-- [dir] .md-nav--integrated > .md-nav__list > .md-nav__item--active .md-nav--secondary {
+            border: none;
+        } --}}
+
+
         .toc-list .toc-list-item a {
             text-decoration: none; /* remove underline */
         }
-
-        @media (min-width: 1300px) {
+        
+        @media (min-width: 1400px) {
             .gh-sidebar {
                 position: absolute; 
                 top: 0;
                 bottom: 0;
                 margin-top: 4vmin;
-                margin-left: -48px;
+                margin-left: -196px;
                 grid-column: wide-start / main-start; /* Place the TOC to the left of the content */
             }
         
@@ -80,11 +87,12 @@
                 position: sticky; /* On larger screens, TOC will stay in the same spot on the page */
                 top: 4vmin;
             }
+
+            .gh-toc .is-active-link::before {
+            background-color: var(--ghost-accent-color); /* Defines TOC   accent color based on Accent color set in Ghost Admin */
+            }
         }
 
-        .gh-toc .is-active-link::before {
-            background-color: var(--ghost-accent-color); /* Defines TOC   accent color based on Accent color set in Ghost Admin */
-        } 
     </style>
 
     {{!-- This tag outputs all your advanced SEO meta, structured data, and other important settings, it should always be the last tag before the closing head tag --}}
@@ -123,9 +131,11 @@
         // Which headings to grab inside of the contentSelector element.
         headingSelector: 'h1, h2, h3, h4',
         // Ensure correct positioning
-        hasInnerContainers: true,
+        hasInnerContainers: false,
         collapseDepth: 6,
         orderedList: false, // Ensures the list is not ordered  
+        smoothScroll: true,
+        smoothScrollDuration: 100,
     });
 </script>
 
