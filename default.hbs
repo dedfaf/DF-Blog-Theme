@@ -43,56 +43,46 @@
         document.documentElement.className = `has-${textColor}-text`;
     </script>
 
-    {{!-- ToC --}}
+    {{!-- TOC styles --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.12.3/tocbot.css">
-
+    
     <style>
-        .gh-content {
-            position: relative;
-            border: none;
-            box-shadow: none;
+    .gh-content {
+        position: relative;
+    }
+
+    .gh-toc > .toc-list {
+        position: relative;
+    }
+
+    .toc-list {
+        overflow: hidden;
+        list-style: none;
+    }
+
+    @media (min-width: 1300px) {
+        .gh-sidebar {
+            position: absolute; 
+            top: 0;
+            bottom: 0;
+            margin-top: 4vmin;
+            grid-column: wide-start / main-start; /* Place the TOC to the left of the content */
+            margin-left: -192px; /* add offset */
         }
-
-        .gh-toc > .toc-list {
-            position: relative;
+    
+        .gh-toc {
+            position: sticky; /* On larger screens, TOC will stay in the same spot on the page */
+            top: 4vmin;
         }
+    }
 
-        .toc-list {
-            list-style-type: none;
-            max-height: none;
-            overflow: visible;
-            list-style: none;
-        }
+    .toc-list .toc-list-item a {
+        text-decoration: none; /* remove underline */
+    }
 
-        {{!-- [dir] .md-nav--integrated > .md-nav__list > .md-nav__item--active .md-nav--secondary {
-            border: none;
-        } --}}
-
-
-        .toc-list .toc-list-item a {
-            text-decoration: none; /* remove underline */
-        }
-        
-        @media (min-width: 1400px) {
-            .gh-sidebar {
-                position: absolute; 
-                top: 0;
-                bottom: 0;
-                margin-top: 4vmin;
-                margin-left: -196px;
-                grid-column: wide-start / main-start; /* Place the TOC to the left of the content */
-            }
-        
-            .gh-toc {
-                position: sticky; /* On larger screens, TOC will stay in the same spot on the page */
-                top: 4vmin;
-            }
-
-            .gh-toc .is-active-link::before {
-            background-color: var(--ghost-accent-color); /* Defines TOC   accent color based on Accent color set in Ghost Admin */
-            }
-        }
-
+    .gh-toc .is-active-link::before {
+        background-color: var(--ghost-accent-color); /* Defines TOC accent color based on Accent color set in Ghost Admin */
+    } 
     </style>
 
     {{!-- This tag outputs all your advanced SEO meta, structured data, and other important settings, it should always be the last tag before the closing head tag --}}
@@ -118,7 +108,7 @@
 {{!-- Scripts - handle responsive videos, infinite scroll, and navigation dropdowns --}}
 <script src="{{asset "built/source.js"}}"></script>
 
-{{!-- ToC --}}
+{{!-- Tocbot script --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.12.3/tocbot.min.js"></script>
 
 {{! Initialize Tocbot after you load the script }}
@@ -131,11 +121,9 @@
         // Which headings to grab inside of the contentSelector element.
         headingSelector: 'h1, h2, h3, h4',
         // Ensure correct positioning
-        hasInnerContainers: false,
+        hasInnerContainers: true,
         collapseDepth: 6,
-        orderedList: false, // Ensures the list is not ordered  
-        smoothScroll: true,
-        smoothScrollDuration: 100,
+        orderedList: false,
     });
 </script>
 
