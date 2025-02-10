@@ -1,6 +1,6 @@
 # DF-Blog-theme
 
-The Theme used in [DF-Blog](https://necro.dedfaf.tech), modified from [source](https://source.ghost.io/)
+The Theme used in [DF-Blog](https://necro.dedfaf.tech), modified from [source](https://github.com/TryGhost/Source)
 
 ## Feature
 
